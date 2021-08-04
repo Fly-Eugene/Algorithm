@@ -3,17 +3,21 @@ def check(idx):
 
     if idx == 1:
         dp[idx] = 'SK'
-        return
+        return 'CY'
 
     elif who == 0:
         if 0 < idx-1:
             dp[idx] = check(idx-1)
-            return dp[idx]
-        elif 0 < idx-3:
+            if dp[idx] == 'SK':
+                return 'CY'
+            else:
+                return 'SK'
+        if 0 < idx-3:
             dp[idx] = check(idx-3)
-            return dp[idx]
-        else:
-            return
+            if dp[idx] == 'SK':
+                return 'CY'
+            else:
+                return 'SK'
 
     else:
         if dp[idx] == 'SK':
@@ -25,7 +29,7 @@ N = int(input())
 dp = [0] * (N+1)
 
 check(N)
-print(dp)
+# print(dp)
 print(dp[N])
 
 ## 0이 SK 1이 CY
