@@ -20,6 +20,3 @@ for tc in range(T):
     res = dp[M] // (dp[N] * dp[M-N])
     print(res)
 
-
-
-
