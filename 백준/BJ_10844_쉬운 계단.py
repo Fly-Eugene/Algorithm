@@ -5,8 +5,9 @@ arr = [[0]*10 for _ in range(N)]
 for i in range(N):
     for j in range(10):
         if i == 0:
-            if j == 0:
-                continue
+            ## 처음 시작이 0일수는 없으니 continue
+            if j == 0: continue
+            ## 그 외에는 모두 1로 초기화
             arr[i][j] = 1
         else:
             if j == 0:
