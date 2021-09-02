@@ -1,4 +1,6 @@
 
+## 정렬하는 방법에 key=str.lower 있음
+
 while True:
     n = int(input())
 
