@@ -1,19 +1,41 @@
+from collections import deque
+
+def dfs(start):
+    global cnt
+
+    stack = deque()
+    stack.append(start)
+    visited[start] = 1
+
+    while stack:
+        country = stack.popleft()
+
+        for nxt in linked[country]:
+            if visited[nxt] == 0:
+                cnt += 1
+                stack.append(nxt)
+                visited[nxt] = 1
+
 
 T = int(input())
 
 for tc in range(T):
     N, M = map(int, input().split())
-    res = M
-    rel = [[] for _ in range(N+1)]
+    linked = [[] for _ in range(N+2)]
+    visited = [0] * (N+2)
+    cnt = 0
 
-    for _ in range(M):
+    for i in range(M):
         a, b = map(int, input().split())
-        for node in rel[b]:
-            if a in rel[node]:
-                res -= 1
+        linked[a].append(b)
+        linked[b].append(a)
 
-        else:
-            rel[a].append(b)
-            rel[b].append(a)
+    for i in range(1, N+1):
+        if visited[i] == 0:
+            dfs(i)
 
-    print(res)
+    print(cnt)
+
+
+
+
