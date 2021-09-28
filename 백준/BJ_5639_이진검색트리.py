@@ -1,3 +1,5 @@
+import sys
+sys.setrecursionlimit(10 ** 9)
 
 def post_order(st, end):
     if st > end:
@@ -5,7 +7,7 @@ def post_order(st, end):
 
     else:
         div = end + 1
-        for i in range(st, end+1):
+        for i in range(st+1, end+1):
             if node[st] < node[i]:
                 div = i
                 break
