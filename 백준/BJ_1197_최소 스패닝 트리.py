@@ -1,10 +1,9 @@
 import heapq
 
 def find_set(x):
-    if p[x] < 0:
-        return x
-    else:
-        return find_set(p[x])
+    if p[x] != x:
+        p[x] = find_set(p[x])
+    return p[x]
 
 def union(x, y):
     a = find_set(x)
@@ -15,11 +14,9 @@ def union(x, y):
 
     if p[a] < p[b]:
         p[b] = a
-    elif p[b] < p[a]:
-        p[a] = b
     else:
-        p[a] -= 1
-        p[b] = x
+        p[a] = b
+
 
 def kruskal(graph):
     global mst_cost
@@ -39,7 +36,9 @@ for _ in range(E):
     a, b, w = map(int, input().split())
     heapq.heappush(graph, (w, a, b))
 
-p = [-1] * (V+1)  # 상호배타적 집합
+p = [0] * (V+1)  # 상호배타적 집합
+for i in range(V+1):
+    p[i] = i
 
 mst_cost = 0
 kruskal(graph)
